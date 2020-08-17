@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+  myorchardcorecms:
+    build: .
+    ports:
+        - "8080:80"    
+    depends_on:
+        - mssql
+
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    environment:
+        ACCEPT_EULA: "Y"
+        SA_PASSWORD: "Pa55w0rd2020"
+        MSSQL_PID: Express
+    ports:
+        - "1433:1433"
